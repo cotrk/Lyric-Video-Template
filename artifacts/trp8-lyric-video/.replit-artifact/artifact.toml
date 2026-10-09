@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "TRP8 Lyric Video"
+description = "A local-first lyric video editor for TRP8. Create a vertical karaoke-style video stage with timed lyrics, cover art, audio playback, motion controls, project JSON import/export, and record mode."
+version = "1.0.0"
+id = "artifacts/trp8-lyric-video"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20724
+
+[services.development]
+run = "pnpm --filter @workspace/trp8-lyric-video run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/trp8-lyric-video", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/trp8-lyric-video/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20724"
+BASE_PATH = "/"

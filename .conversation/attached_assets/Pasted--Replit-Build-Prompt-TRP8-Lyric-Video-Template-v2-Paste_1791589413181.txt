@@ -1,0 +1,40 @@
+# Replit Build Prompt: TRP8 Lyric Video Template (v2)
+
+Paste this whole thing into a new Replit Agent chat as one message. Build first, then run the follow-up prompts below only after the first build renders correctly.
+
+---
+
+## MASTER PROMPT (paste this first)
+
+**Context:** I make AI hip hop music as TRP8 (pronounced "Trap Eight") using Suno. I need a lyric video template web app: a 9:16 vertical stage I can screen-record, with an editor panel to set the song title, artist name, cover art, and lyrics, plus karaoke-style word highlighting synced to audio playback. No backend, no database, no accounts. Everything runs client-side in one deployable app, plain static hosting compatible, zero ongoing cost.
+
+**Task:** Build a single-page web app with two zones: a live 9:16 preview stage (phone-frame proportions, black background) and an editor sidebar. The stage shows: cover art in a ringed frame, song title and artist in bold type, scrolling karaoke lyrics synced to an uploaded audio file, and animated particle effects floating upward across the whole stage. Visual texture: scanlines overlay, neon glow on active words, occasional glitch accent on the title. The editor sidebar has: text fields for title and artist, cover image upload, audio file upload, a lyrics textarea supporting [mm:ss] timecodes per line, a Motion level control (Quiet / Standard / Intense), and Export/Import project JSON buttons. Play/pause button and a fullscreen/record mode that hides the editor and centers the stage.
+
+**Particle rules (important):** Make the particles BOLD, not subtle. Default to Standard with at least 30 particles; Quiet at least 12; Intense at least 60. Dots should be large enough to read clearly on a 400px-wide stage (minimum ~4px), glowing, colored neon green (#39ff6a) with white hot centers, floating upward on varied durations and delays, max opacity at least 0.7. Never decorative-only thin dust.
+
+**Reduced motion rule:** If the OS has prefers-reduced-motion set, particles must render statically distributed across the stage (fixed positions, 0.4 opacity, no animation), NOT invisible. The feature should read as "calm," never as missing.
+
+**Karaoke rules:** Each lyric line activates at its timecode; the active word highlights with glow as it is "sung." Support per-word timecodes too ([mm:ss.ms word]). Clicking a line in the editor seeks the audio to that line.
+
+**Persistence:** Autosave the project to localStorage on every change. Export writes the full project (settings, timecodes, cover as data URL) to a .json file; Import restores it.
+
+**Design DNA:** Dark underground rap aesthetic. Near-black background (#0a0a0b), neon green accent (#39ff6a), off-white text (#f2f2f0). Typography: heavy condensed sans for the title (something like Anton or Archivo Black), clean grotesk for lyrics. This is for Chicago drill music: hard, stark, confident. No gradients-as-decoration, no purple/blue neon, no rounded bubbly UI, no emoji anywhere in the UI.
+
+**Preload a demo project** on first load: title "Pentakill Bodies", artist "TRP8", with 8 lines of placeholder drill lyrics with timecodes and a generated placeholder cover (dark abstract, not a stock photo). Use a silent/placeholder audio note telling me to upload my own track.
+
+**Constraints:**
+- Single deployable static app. Plain HTML/CSS/JS or one framework, your choice, but no build step that needs my server.
+- No external fonts or libraries that require API keys. Google Fonts CDN and vanilla CSS/JS are fine.
+- Everything must work from the file:// or static-hosted page with no console errors.
+
+Build it now and render the stage with the demo project loaded so I can see it working.
+
+---
+
+## FOLLOW-UP 1 (only after the first build renders): particle tuning
+
+The particles need more presence. Double the particle counts for each Motion level, increase dot size by 50%, and add slight horizontal drift to the float animation so they feel alive, not mechanical. Keep the reduced-motion static fallback intact.
+
+## FOLLOW-UP 2 (only after follow-up 1 looks right): record mode polish
+
+In record mode, hide the editor completely, center the stage at full viewport height, and add a subtle 2% film grain overlay on the stage so screen recordings look textured instead of flat digital. No grain on the editor.
